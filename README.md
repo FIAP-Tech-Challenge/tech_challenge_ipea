@@ -18,7 +18,7 @@ Essa base de dados histórica envolve duas colunas: data e preço (em dólares).
 
 Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dashboard interativo e que gere insights relevantes para tomada de decisão. Além disso, solicitaram que fosse desenvolvido um modelo de Machine Learning para fazer o forecasting do preço do petróleo.
 
-**Seu objetivo é:**
+**OBJETIVO:**
 
 1. Criar um dashboard interativo com ferramentas à sua escolha.
 
