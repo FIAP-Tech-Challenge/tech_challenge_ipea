@@ -42,4 +42,4 @@ Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dash
 
 5.Instalar os pacotes: "pip install -r requirements.txt"
 
-6. Executar o comando: "streamlit run Dashboard_ipea.py"
+6. Executar o comando: "streamlit run Inicio.py"
