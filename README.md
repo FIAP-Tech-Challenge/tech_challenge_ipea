@@ -18,13 +18,13 @@ Essa base de dados histórica envolve duas colunas: data e preço (em dólares).
 
 Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dashboard interativo e que gere insights relevantes para tomada de decisão. Além disso, solicitaram que fosse desenvolvido um modelo de Machine Learning para fazer o forecasting do preço do petróleo.
 
-**Seu objetivo é:**
+**OBJETIVO:**
 
-1.Criar um dashboard interativo com ferramentas à sua escolha.
+1. Criar um dashboard interativo com ferramentas à sua escolha.
 
-2.Seu dashboard deve fazer parte de um storytelling que traga insights relevantes sobre a variação do preço do petróleo, como situações geopolíticas, crises econômicas, demanda global por energia, etc. Isso pode te ajudar com seu modelo. É obrigatório que você traga pelo menos 4 insights neste desafio.
+2. Seu dashboard deve fazer parte de um storytelling que traga insights relevantes sobre a variação do preço do petróleo, como situações geopolíticas, crises econômicas, demanda global por energia, etc. Isso pode te ajudar com seu modelo. É obrigatório que você traga pelo menos 4 insights neste desafio.
 
-3.Criar um modelo de Machine Learning que faça a previsão do preço do petróleo diariamente(lembre-se de time series). Esse modelo deve estar contemplado em seu storytelling e deve conter o código que você trabalhou, analisando as performances do modelo.
+3. Criar um modelo de Machine Learning que faça a previsão do preço do petróleo diariamente(lembre-se de time series). Esse modelo deve estar contemplado em seu storytelling e deve conter o código que você trabalhou, analisando as performances do modelo.
 
 4. Criar um plano para fazer o deploy em produção do modelo, com as ferramentas que são necessárias.
 
@@ -32,14 +32,14 @@ Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dash
 
 **CONFIGURANDO O AMBIENTE:**
 
-1.Clonar o repositório do GitHub “git clone https://github.com/FIAP-Tech-Challenge/tech_challenge_ipea”
+1. Clonar o repositório do GitHub “git clone https://github.com/FIAP-Tech-Challenge/tech_challenge_ipea”
 
-2.Todas as bibliotecas estarão listadas no arquivo requirements.txt para criação do ambiente virtual
+2. Todas as bibliotecas estarão listadas no arquivo requirements.txt para criação do ambiente virtual
 
-3.Abrir o prompt de comando no diretório /app para criar as variáveis de ambiente: "python -m venv venv"
+3. Abrir o prompt de comando no diretório /app para criar as variáveis de ambiente: "python -m venv venv"
 
-4.No Windows: "venv\Scripts\activate" e no Linux ou Mac: "source venv/bin/activate"
+4. No Windows: "venv\Scripts\activate" e no Linux ou Mac: "source venv/bin/activate"
 
-5.Instalar os pacotes: "pip install -r requirements.txt"
+5. Instalar os pacotes: "pip install -r requirements.txt"
 
-6. Executar o comando: "streamlit run Dashboard_ipea.py"
+6. Executar o comando: "streamlit run Inicio.py"
