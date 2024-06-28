@@ -26,9 +26,9 @@ Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dash
 
 3.Criar um modelo de Machine Learning que faça a previsão do preço do petróleo diariamente(lembre-se de time series). Esse modelo deve estar contemplado em seu storytelling e deve conter o código que você trabalhou, analisando as performances do modelo.
 
-4. Criar um plano para fazer o deploy em produção do modelo, com as ferramentas que são necessárias.
+4.Criar um plano para fazer o deploy em produção do modelo, com as ferramentas que são necessárias.
 
-5. Faça um MVP do seu modelo em produção utilizando o Streamlit.
+5.Faça um MVP do seu modelo em produção utilizando o Streamlit.
 
 **CONFIGURANDO O AMBIENTE:**
 
@@ -42,4 +42,4 @@ Um grande cliente do segmento pediu para que a consultoria desenvolvesse um dash
 
 5.Instalar os pacotes: "pip install -r requirements.txt"
 
-6. Executar o comando: "streamlit run Inicio.py"
+6.Executar o comando: "streamlit run Inicio.py"
