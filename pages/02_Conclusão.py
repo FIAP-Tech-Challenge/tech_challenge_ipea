@@ -19,7 +19,8 @@ st.markdown("<h1 style='text-align: center; color: white;'>Estudo de caso: Preç
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center; font-size:28px;'>Tech Challange - Fase 4</h1>", unsafe_allow_html=True)
-
+st.markdown("<h2 style='text-align: left; color: orange;'>Conclusão<h2>", unsafe_allow_html=True)
+   
 st.markdown("<h2 style='text-align: left; color: orange;'>Grupo 17<h2>", unsafe_allow_html=True)
 st.markdown("José Faria- RM <br> Marcelo Sampaio – RM 352734 <br> Micheli Souza – RM 352969 <br> Rafael Inoue – RM 352735",unsafe_allow_html=True)
 
