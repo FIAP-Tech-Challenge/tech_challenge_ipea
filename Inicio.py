@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from prophet import Prophet 
+import matplotlib.pyplot as plt
+import numpy as np
 
 page_bg_img = """
 <style>
@@ -50,6 +52,38 @@ future = m.make_future_dataframe(periods = 365)
 forecast = m.predict(future)
 figure = m.plot(forecast, xlabel = 'Data', ylabel = 'Preco')
 
+# definindo uma data de corte de acordo com
+data_fim = '2016-11-27'
+# definindo os dados de treino, antes da data de corte
+train = df_prophet.loc[df_prophet['ds'] <= data_fim]
+# definindo os dados de teste posterior a data de corte
+test = df_prophet.loc[df_prophet['ds'] > data_fim]
+
+# fazendo previsões com os dados de teste
+test_forecast = m.predict(test)
+# olhando os resultados das previsões com os dados de teste
+test_forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(7)
+
+# configurando a área de plotagem
+f, ax = plt.subplots(figsize=(14,5))
+# alterando a altura
+f.set_figheight(5)
+# alterando a largura
+f.set_figwidth(15)
+# plotando o gráfico com dados de teste
+test.plot(kind='line',x='ds', y='y', color='red', label='Teste', ax=ax)
+# plotando o gráfico com os dados previstos
+test_forecast.plot(kind='line',x='ds',y='yhat', color='green',label='Previsão', ax=ax)
+# definindo o título
+plt.title('Dados de Teste vs Previsões')
+
+# criando a função MAPE
+def mean_absolute_percentage_error(y_true, y_pred):
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+
+mape = mean_absolute_percentage_error(test['y'],test_forecast['yhat'])
+print("MAPE",round(mape,4))
 
 caminho_do_arquivo2 = 'data/owid-energy-data.csv'
 dados_energia = pd.read_csv(caminho_do_arquivo2) # Leitura do csv para Dataframe
@@ -65,8 +99,7 @@ df_oil_mundo = df_oil_mundo.set_index('year')
 fig = px.line(df_oil_mundo,y=df_oil_mundo['oil_consumption'], title= 'Consumo de energia mundial produzida por petróleo (GWh)',
               labels={"year": "Ano", "oil_consumption": "Consumo de energia (GWh)"})
 fig.update_layout(
-    title_font_size=20, title_x=0.25
-  
+    title_font_size=20, title_x=0.25 
 )
 
 st.markdown("<h1 style='text-align: center; font-size:28px;'>Tech Challange - Fase 4</h1>", unsafe_allow_html=True)
@@ -136,6 +169,17 @@ with tab2:
     with col2:
         st.dataframe(df, width=300)
         st.markdown(f'A tabela possui :orange[{df.shape[0]}] linhas e :orange[{df.shape[1] + 1}] colunas')
+
     st.divider()
     st.markdown("<h2 style='text-align: left; color: orange;'>Modelo Preditivo<h2>", unsafe_allow_html=True)
+    st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. Mostraremos a seguir como chegamos a esta conclusão.
+            É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais. O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
     st.pyplot(fig=figure, clear_figure=None, use_container_width=True)
+    st.write('''Aplicando a metodologia em uma amostragem menor, observaremos no gráfico, os valores previstos (linha verde) diante dos valores reais (linha vermelha). Nosso modelo instancia e treina para fazer a previsão de séries temporais e exibe os últimos preços junto com os intervalos de confiança associados.
+             Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e o MAPE é a métrica utilizada. Quanto menor o valor, mais preciso é o modelo.
+             Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
+    st.pyplot(fig=f, clear_figure=None, use_container_width=True)
+    st.write('''O MAPE obtido é de 6,799%, o que significa que o modelo tem uma precisão de 93,201%.
+             A partir disso, podemos concluir que o modelo é eficaz para prever o preço do petróleo Brent, e que a previsão é bastante precisa.''')
+  
+    
