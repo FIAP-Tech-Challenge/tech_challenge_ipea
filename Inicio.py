@@ -171,7 +171,7 @@ with tab2:
         st.markdown(f'A tabela possui :orange[{df.shape[0]}] linhas e :orange[{df.shape[1] + 1}] colunas')
 
     st.divider()
-    st.markdown("<h2 style='text-align: left; color: orange;'>Modelo Preditivo<h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: left; color: orange;'>Modelo Preditivo (Aprendizado de Máquina)<h2>", unsafe_allow_html=True)
     st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. Mostraremos a seguir como chegamos a esta conclusão.
             É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais. O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
     st.pyplot(fig=figure, clear_figure=None, use_container_width=True)
