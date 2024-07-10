@@ -50,7 +50,8 @@ m.fit(df_prophet)
 future = m.make_future_dataframe(periods = 365)
 # previsão do modelo
 forecast = m.predict(future)
-figure = m.plot(forecast, xlabel = 'Data', ylabel = 'Preco')
+figure = m.plot(forecast, xlabel = 'Data', ylabel = 'Preço', include_legend=True, uncertainty=True)
+plt.title('Previsão de Preço do Petróleo')
 
 # definindo uma data de corte de acordo com
 data_fim = '2016-11-27'
@@ -59,10 +60,12 @@ train = df_prophet.loc[df_prophet['ds'] <= data_fim]
 # definindo os dados de teste posterior a data de corte
 test = df_prophet.loc[df_prophet['ds'] > data_fim]
 
-# fazendo previsões com os dados de teste
+# fazendo previsões com os dados de teste e treino
 test_forecast = m.predict(test)
-# olhando os resultados das previsões com os dados de teste
+train_forecast = m.predict(train)
+# olhando os resultados das previsões com os dados de teste e treino
 test_forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(7)
+train_forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(7)
 
 # configurando a área de plotagem
 f, ax = plt.subplots(figsize=(14,5))
@@ -71,11 +74,16 @@ f.set_figheight(5)
 # alterando a largura
 f.set_figwidth(15)
 # plotando o gráfico com dados de teste
-test.plot(kind='line',x='ds', y='y', color='red', label='Teste', ax=ax)
+test.plot(kind='line',x='ds', y='y', color='red', label='Test', ax=ax)
+# plotando o gráfico com dados de teste
+train.plot(kind='line',x='ds', y='y', color='blue', label='Train', ax=ax)
 # plotando o gráfico com os dados previstos
-test_forecast.plot(kind='line',x='ds',y='yhat', color='green',label='Previsão', ax=ax)
+test_forecast.plot(kind='line',x='ds',y='yhat', color='orange',label='Forecast Test', ax=ax)
+train_forecast.plot(kind='line',x='ds',y='yhat', color='purple',label='Forecast Train', ax=ax)
 # definindo o título
-plt.title('Dados de Teste vs Previsões')
+plt.title('Dados de Treino e Teste vs Previsões')
+plt.xlabel('Data')
+plt.ylabel('Preço') 
 
 # criando a função MAPE
 def mean_absolute_percentage_error(y_true, y_pred):
@@ -117,7 +125,7 @@ Essa cotação nos impacta diretamente, influenciando os preços de seus derivad
 Os preços do petróleo dependem principalmente dos custos de produção e transporte.          
 Como o petróleo Brent é extraído próximo ao mar, os custos de transporte são significativamente mais baixos.
 Embora o Brent tenha uma qualidade inferior, ele se tornou um padrão de referência devido às exportações mais confiáveis, resultando em preços mais elevados.           
-Os problemas geopolíticos, crises econômicas e demanda global por energia são um fatores importantes a considerar na variação do preço e vamos explorar 4 insights relevantes durante o período explorado: 
+Os problemas geopolíticos, crises econômicas e demanda global por energia são fatores importantes a considerar na variação do preço e vamos explorar 4 insights relevantes durante o período explorado: 
 
     1. Impacto da pandemia do coronavírus na produção global de petróleo
              
@@ -163,20 +171,20 @@ with tab2:
     st.markdown("<h2 style='text-align: left; color: orange;'>Análise Exploratória<h2>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        st.write(''' A base de dados que estamos utilizando está disponível no site do IPEA - Instituto de Pesquisa Econômica Aplicada, e as informações provêm da "Energy Information Administration (EIA)" do Departamento de Energia dos Estados Unidos.''')
-        st.write('''A tabela fornecida contém duas colunas: uma com as datas e outra com os preços do petróleo bruto. Ao analisarmos essa base, foi possível constatar que ela pode se trata de uma série temporal, o que permite aplicar alguns dos modelos de "Machine Learning" que estudamos. ''')
+        st.write('''A base de dados que estamos utilizando está disponível no site do IPEA - Instituto de Pesquisa Econômica Aplicada, e as informações provêm da "Energy Information Administration (EIA)" do Departamento de Energia dos Estados Unidos.''')
+        st.write('''A tabela fornecida contém duas colunas: uma com as datas e outra com os preços do petróleo bruto. Ao analisarmos essa base, foi possível constatar que ela pode se trata de uma série temporal, o que permite aplicar alguns dos modelos de "Machine Learning" (Aprendizado de Máquina) que estudamos. ''')
 
     with col2:
         st.dataframe(df, width=300)
         st.markdown(f'A tabela possui :orange[{df.shape[0]}] linhas e :orange[{df.shape[1] + 1}] colunas')
 
     st.divider()
-    st.markdown("<h2 style='text-align: left; color: orange;'>Modelo Preditivo<h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: left; color: orange;'>Machine Learning", unsafe_allow_html=True)
     st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. Mostraremos a seguir como chegamos a esta conclusão.
-            É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais. O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
+            É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais e normalizá-los (separar as amostragens em uma proporção equalitária para que o aprendizado de máquina seja mais eficiente). O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
     st.pyplot(fig=figure, clear_figure=None, use_container_width=True)
     st.write('''Aplicando a metodologia em uma amostragem menor, observaremos no gráfico, os valores previstos (linha verde) diante dos valores reais (linha vermelha). Nosso modelo instancia e treina para fazer a previsão de séries temporais e exibe os últimos preços junto com os intervalos de confiança associados.
-             Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e o MAPE é a métrica utilizada. Quanto menor o valor, mais preciso é o modelo.
+             Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e a métrica dos resultados. Quanto menor o valor, mais preciso é o modelo.
              Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
     st.pyplot(fig=f, clear_figure=None, use_container_width=True)
     st.write('''O MAPE obtido é de 6,799%, o que significa que o modelo tem uma precisão de 93,201%.
