@@ -185,12 +185,12 @@ with tab2:
     st.markdown("<h2 style='text-align: left; color: orange;'>Machine Learning", unsafe_allow_html=True)
     st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. 
     
-    Mostraremos a seguir como chegamos a esta conclusão. É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais e normalizá-los (separar as amostragens em uma proporção equalitária para que o aprendizado de máquina seja mais eficiente). O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
+Mostraremos a seguir como chegamos a esta conclusão. É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais e normalizá-los (separar as amostragens em uma proporção equalitária para que o aprendizado de máquina seja mais eficiente). O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
     st.pyplot(fig=figure, clear_figure=None, use_container_width=True)
     st.write('''Aplicando a metodologia em uma amostragem menor, observaremos no gráfico, os valores previstos (linha verde) diante dos valores reais (linha vermelha). Nosso modelo instancia e treina para fazer a previsão de séries temporais e exibe os últimos preços junto com os intervalos de confiança associados.
              
-    Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e a métrica dos resultados. Quanto menor o valor, mais preciso é o modelo.
-    Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
+Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e a métrica dos resultados. Quanto menor o valor, mais preciso é o modelo.
+Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
     st.pyplot(fig=f, clear_figure=None, use_container_width=True)
     st.write('''O MAPE obtido é de 6,799%, o que significa que o modelo tem uma precisão de 93,201%.
              A partir disso, podemos concluir que o modelo é eficaz para prever o preço do petróleo Brent, e que a previsão é bastante precisa.''')
