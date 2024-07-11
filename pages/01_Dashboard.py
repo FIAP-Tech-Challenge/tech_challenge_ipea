@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
-background-image: url("https://images.unsplash.com/photo-1516199423456-1f1e91b06f25?q=80&w=2049&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+background-image: url("https://app.powerbi.com/view?r=eyJrIjoiMTMyMDNjYTItMDViYy00NTAwLTgwMjItMGExYzVmYjRlODdmIiwidCI6IjIzNjU0OGVlLTQ3YmYtNDEzNy1iZWFhLTA2OWMzOTdhMzA0ZCJ9");
 background-size: 120%;
 background-position: left;
 background-repeat: no-repeat
