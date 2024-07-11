@@ -20,6 +20,24 @@ st.set_page_config(layout='wide', page_title='Petróleo - Ipea', page_icon=':oil
 
 st.markdown("<h1 style='text-align: center; color: white;'>Estudo de caso: Preço Petróleo Brent</h1>", unsafe_allow_html=True)
 st.markdown(page_bg_img, unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size:28px;'>Tech Challange - Fase 4</h1>", unsafe_allow_html=True)
+
+caminho_do_arquivo2 = 'data/owid-energy-data.csv'
+dados_energia = pd.read_csv(caminho_do_arquivo2) # Leitura do csv para Dataframe
+df_oil_consumo = dados_energia[['country', 'year', 'oil_consumption']]
+df_oil_consumo.dropna(inplace=True)
+df_oil_consumo = df_oil_consumo.reset_index(drop=True)
+df_oil_mundo = df_oil_consumo.query('country == "World"')
+df_oil_mundo.drop('country', axis=1, inplace=True)
+df_oil_mundo.reset_index(drop=True, inplace=True)
+df_oil_mundo['year'] = pd.to_datetime(df_oil_mundo['year'],format='%Y')
+df_oil_mundo = df_oil_mundo.set_index('year')
+#st.dataframe(df_oil_mundo)
+fig = px.line(df_oil_mundo,y=df_oil_mundo['oil_consumption'], title= 'Consumo de energia mundial produzida por petróleo (GWh)',
+              labels={"year": "Ano", "oil_consumption": "Consumo de energia (GWh)"})
+fig.update_layout(
+    title_font_size=20, title_x=0.25 
+)
 
 def formatar_valor(valor):
     return 'US$ {:.2f}'.format(valor).replace(".",",")
@@ -93,25 +111,6 @@ def mean_absolute_percentage_error(y_true, y_pred):
 mape = mean_absolute_percentage_error(test['y'],test_forecast['yhat'])
 print("MAPE",round(mape,4))
 
-caminho_do_arquivo2 = 'data/owid-energy-data.csv'
-dados_energia = pd.read_csv(caminho_do_arquivo2) # Leitura do csv para Dataframe
-df_oil_consumo = dados_energia[['country', 'year', 'oil_consumption']]
-df_oil_consumo.dropna(inplace=True)
-df_oil_consumo = df_oil_consumo.reset_index(drop=True)
-df_oil_mundo = df_oil_consumo.query('country == "World"')
-df_oil_mundo.drop('country', axis=1, inplace=True)
-df_oil_mundo.reset_index(drop=True, inplace=True)
-df_oil_mundo['year'] = pd.to_datetime(df_oil_mundo['year'],format='%Y')
-df_oil_mundo = df_oil_mundo.set_index('year')
-#st.dataframe(df_oil_mundo)
-fig = px.line(df_oil_mundo,y=df_oil_mundo['oil_consumption'], title= 'Consumo de energia mundial produzida por petróleo (GWh)',
-              labels={"year": "Ano", "oil_consumption": "Consumo de energia (GWh)"})
-fig.update_layout(
-    title_font_size=20, title_x=0.25 
-)
-
-st.markdown("<h1 style='text-align: center; font-size:28px;'>Tech Challange - Fase 4</h1>", unsafe_allow_html=True)
-
 tab1, tab2= st.tabs(['Introdução', 'Base de Dados'])
 
 with tab1:  
@@ -162,7 +161,7 @@ Equilibrio de Mercado: Equilíbrio é uma situação na qual o preço atingiu o 
     4. Crise econômica em 2008
         
 Para ilustrar esse cenário utilizamos o Dataset do <a href="https://github.com/owid/energy-data">Our World in Data</a> mantido pelo autor Pablo Rosado, que trás diversos dados acerca da matriz energética mundial, destacando os tipos de energia, o consumo e producao de energia por país, entre outros. Como o nosso foco está voltado para o preco do petróleo Brent, resolvemos explorar o consumo de energia em todo o mundo gerado exclusivamente pelo petróleo.''', unsafe_allow_html=True)
-
+    
     st.plotly_chart(fig, theme="streamlit",use_container_width = True)
 
     st.write('''Vale destacar em 2008, a demanda por consumo de energia originada do petróleo foi impactada, pois houve uma recessão no setor industrial. 
