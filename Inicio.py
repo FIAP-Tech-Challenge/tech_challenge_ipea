@@ -132,6 +132,7 @@ Os problemas geopolíticos, crises econômicas e demanda global por energia são
 A propagação da COVID-19, causada pelo coronavírus SARS-CoV-2, foi o principal impacto nas economias globais recentemente. Originada na China, a pandemia se espalhou por todos os continentes, resultando em milhares de mortes ao redor do mundo e desafiando autoridades de saúde globalmente.
 Inicialmente, a China foi o epicentro da doença, tendo sofrido o maior impacto. Medidas como o prolongamento do feriado de ano novo e o isolamento de Wuhan reduziram significativamente a atividade produtiva e a demanda, afetando não apenas a economia chinesa, mas também globalmente, dado o peso econômico do país.
 A rápida disseminação na Europa e nas Américas levou muitos países a adotarem políticas de isolamento social para conter o surto, resultando no cancelamento de conferências internacionais e grandes eventos, como as Olimpíadas de Tóquio, que foram adiadas para 2021.
+
 Na indústria, houve atrasos na entrega de FPSO’s devido à interrupção nos estaleiros próximos ao epicentro inicial da doença, especialmente na China, afetando projetos globais, incluindo os da Petrobras.
 O impacto na demanda global de petróleo foi significativo, com a estimativa de uma queda na demanda anual pela primeira vez desde 2009, conforme previsto pela Agência Internacional de Energia (IEA). A demanda chinesa por petróleo e derivados diminuiu, afetando diretamente o mercado brasileiro, especialmente nos setores industrial, de transportes e turismo, que enfrentaram cancelamentos de voos e paralisações na produção.
 Esses eventos culminaram em projeções de redução na demanda global por petróleo para 2020, variando de uma leve retração a uma queda significativa, que dependeram da eficácia das medidas de controle da doença.
@@ -139,6 +140,7 @@ Esses eventos culminaram em projeções de redução na demanda global por petr�
     2. Impacto da guerra causa aumento de preços
 
 Conflitos envolvendo países importantes no mercado de petróleo, como a Rússia, geram apreensão devido ao risco de retaliação com a redução da oferta de combustível. Como o petróleo é uma commodity, seu preço depende da oferta e demanda globais, e qualquer interrupção na oferta pode aumentar os preços.
+
 Sanções contra a Rússia afetaram a logística e compra de seu petróleo, com refinarias e bancos evitando negócios. A ameaça de ataques no Mar Negro também dificulta transações. Embora as sanções não tenham atingido diretamente a produção e exportação, elas sufocam a economia russa, e Putin pode retaliar segurando o petróleo.
 O banco JPMorgan alertou que um corte nas exportações russas poderia elevar o preço do barril para US$ 150, mas isso também prejudicaria a economia russa, já que petróleo e gás natural representaram 43% da receita anual do governo entre 2011 e 2020.
    
@@ -165,6 +167,7 @@ Para ilustrar esse cenário utilizamos o Dataset do <a href="https://github.com/
 
     st.write('''Vale destacar em 2008, a demanda por consumo de energia originada do petróleo foi impactada, pois houve uma recessão no setor industrial. 
 A crise econômica de 2008 foi uma crise financeira global que afetou a economia mundial. Esta crise foi caracterizada por uma queda na liquidez, no acesso a crédito bancário. Foi desencadeada pelo mercado imobiliário dos EUA e teve um impacto significativo na economia global, levando a uma recessão global. 
+
 Foi a pior crise financeira desde a Grande Depressão de 1929 e foi causada por uma combinação de fatores políticos, e afetou diretamente o setor de energia, porque se a demanda por consumo foi menor, consequentemente como já visto anteriormente, o preco do petróleo Brent também reduziu.''')
 
 with tab2:
@@ -180,12 +183,14 @@ with tab2:
 
     st.divider()
     st.markdown("<h2 style='text-align: left; color: orange;'>Machine Learning", unsafe_allow_html=True)
-    st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. Mostraremos a seguir como chegamos a esta conclusão.
-            É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais e normalizá-los (separar as amostragens em uma proporção equalitária para que o aprendizado de máquina seja mais eficiente). O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
+    st.write('''Para a criarmos uma linha do tempo e uma previsão de preço do petróleo, utilizaremos a biblioteca Prophet, criado pela Meta (empresa responsável pelo Facebook), que é um modelo de previsão de séries temporais. Para o estudo utilizaremos sazionalidade diária, construiremos o método com base em um período de 365 dias para buscar valores futuros e iniciaremos trazendo um gráfico cujos pontos pretos são valores reais de nosso dataframe, enquanto a linha azul são os valores previstos. 
+    
+Mostraremos a seguir como chegamos a esta conclusão. É preciso separar a base de dados em treino e teste, para que possamos comparar os valores previstos com os valores reais e normalizá-los (separar as amostragens em uma proporção equalitária para que o aprendizado de máquina seja mais eficiente). O percentual de treino e teste é de 80% e 20%, respectivamente. ''')
     st.pyplot(fig=figure, clear_figure=None, use_container_width=True)
     st.write('''Aplicando a metodologia em uma amostragem menor, observaremos no gráfico, os valores previstos (linha verde) diante dos valores reais (linha vermelha). Nosso modelo instancia e treina para fazer a previsão de séries temporais e exibe os últimos preços junto com os intervalos de confiança associados.
-             Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e a métrica dos resultados. Quanto menor o valor, mais preciso é o modelo.
-             Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
+             
+Após a execução do modelo, calculamos o erro médio percentual absoluto (MAPE) para avaliar a precisão do modelo e a métrica dos resultados. Quanto menor o valor, mais preciso é o modelo.
+Diante disso, o aprendizado da máquina é capaz de prever o preço do petróleo Brent agora em um dataframe maior, conjurando o resultado obtido no gráfico anterior.''')
     st.pyplot(fig=f, clear_figure=None, use_container_width=True)
     st.write('''O MAPE obtido é de 6,799%, o que significa que o modelo tem uma precisão de 93,201%.
              A partir disso, podemos concluir que o modelo é eficaz para prever o preço do petróleo Brent, e que a previsão é bastante precisa.''')
