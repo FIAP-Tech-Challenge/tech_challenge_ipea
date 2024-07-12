@@ -96,8 +96,8 @@ test.plot(kind='line',x='ds', y='y', color='red', label='Test', ax=ax)
 # plotando o gráfico com dados de teste
 train.plot(kind='line',x='ds', y='y', color='blue', label='Train', ax=ax)
 # plotando o gráfico com os dados previstos
-test_forecast.plot(kind='line',x='ds',y='yhat', color='orange',label='Forecast Test', ax=ax)
-train_forecast.plot(kind='line',x='ds',y='yhat', color='purple',label='Forecast Train', ax=ax)
+test_forecast.plot(kind='line',x='ds',y='yhat', color='orange',label='Forecast test', ax=ax)
+train_forecast.plot(kind='line',x='ds',y='yhat', color='purple',label='Forecast train', ax=ax)
 # definindo o título
 plt.title('Dados de Treino e Teste vs Previsões')
 plt.xlabel('Data')
