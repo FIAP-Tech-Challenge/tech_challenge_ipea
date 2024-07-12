@@ -30,7 +30,7 @@ Dado o papel essencial do petróleo Brent como benchmark no mercado global, suas
 
 Destacamos que atualmente o cenário dos preços no ano de 2024 esteja em alta, portanto a estimativa de US&dollar; 80,00 o barril pode ser superada, visto que o modelo Prophet não leva em consideração fatores externos como conflitos geopolíticos, como as guerras Rússia x Ucrânia e Israel x Palestina, portanto a tendência é favorável aos investimentos para valorização do petróleo, dado que a demanda pela oferta e procura seja elevada. O fator de risco é a instabilidade política e econômica global, como a eleição norteamericana e a utilização cada vez mais de energias "limpas", conceito que a população mundial está encorporando ao seu modo de vida.''')   
 st.markdown("<h2 style='text-align: left; color: orange;'>Grupo 17<h2>", unsafe_allow_html=True)
-st.markdown("José Faria- RM <br> Marcelo Sampaio – RM 352734 <br> Micheli Souza – RM 352969 <br> Rafael Inoue – RM 352735",unsafe_allow_html=True)
+st.markdown("José Faria- RM 353111 <br> Marcelo Sampaio – RM 352734 <br> Micheli Souza – RM 352969 <br> Rafael Inoue – RM 352735",unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: left; color: orange;'>Referências<h2>", unsafe_allow_html=True)
 st.markdown("<a href='http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650971490&oper=view'>Site do Ipea</a>",unsafe_allow_html=True)
