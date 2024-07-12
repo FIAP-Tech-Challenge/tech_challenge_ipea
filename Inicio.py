@@ -19,8 +19,8 @@ background-repeat: no-repeat
 st.set_page_config(layout='wide', page_title='Petróleo - Ipea', page_icon=':oil_drum:')
 
 st.markdown("<h1 style='text-align: center; color: white;'>Estudo de caso: Preço Petróleo Brent</h1>", unsafe_allow_html=True)
-st.markdown(page_bg_img, unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; font-size:28px;'>Tech Challange - Fase 4</h1>", unsafe_allow_html=True)
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 caminho_do_arquivo2 = 'data/owid-energy-data.csv'
 dados_energia = pd.read_csv(caminho_do_arquivo2) # Leitura do csv para Dataframe
